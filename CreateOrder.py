@@ -31,6 +31,7 @@ class CreateOrder(unittest.TestCase):
             "ordersn":ordersn
         }
         om = requests.get(url=self.ourl,params=data)
+        # 测试修改
         print om.text
     def tearDown(self):
         pass
