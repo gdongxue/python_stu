@@ -8,7 +8,8 @@ class CreateOrder(unittest.TestCase):
     def setUp(self):
         self.curl = "http://api.100iec.com/order/createOrder"
         self.ourl = "http://api.100iec.com/order/orderinfo"
-        self.cookie = Login.login()
+        self.login = Login.login()
+        self.cookie = self.login.cookies
     def create(self):
          data = {
                     "dispatchtype": 0,
@@ -31,7 +32,6 @@ class CreateOrder(unittest.TestCase):
             "ordersn":ordersn
         }
         om = requests.get(url=self.ourl,params=data)
-        # 测试修改
         print om.text
     def tearDown(self):
         pass

@@ -7,7 +7,9 @@ def login():
             "code": "123456"
         }
     login = requests.get(url,login_data)
-    print login.text
-    cookie = login.cookies
-    return cookie
+    # print login.text
+    # cookie = login.cookies
+    return login
 
+if __name__ == '__main__':
+ login()
