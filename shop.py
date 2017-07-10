@@ -10,6 +10,7 @@ class Shop(unittest.TestCase):
         self.url = "http://api.100iec.com/shop/getinfo"
         self.url1 = "http://api.100iec.com/shop/getShopGoods"
         self.url2 = "http://api.100iec.com/shop/setshopgoods"
+        self.url3 = "http://api.100iec.com/shop/getgoodsstatus"
         self.login = Login.login()
         self.cookie = self.login.cookies
 
@@ -28,29 +29,47 @@ class Shop(unittest.TestCase):
         shopid = openid["result"]["openid"]
         self.url_goods = self.url1+"?shopid="+shopid
         goods = requests.get(url=self.url_goods,cookies = self.cookie)
-        # print goods.text
+        print goods.text
         return goods.text
 
  # 获取店铺商品上下架状态
+    def goods_status(self):
+        data = {
+            "goodsids":52
+        }
+        goods_status = requests.get(url=self.url3,params=data,cookies =self.cookie)
+        print goods_status.text
+        return goods_status
+
+
+ # 获取店铺商品上下架状态
     def test_setshop_goods(self):
+        # 调用获取店铺商品方法
         shopgoods = self.shop_goods()
         opgoods = json.loads(shopgoods)
+
         arr = opgoods["result"]["goods"]
         for obj in arr:
             if (obj["id"] == "52"):
-                data = {
-                    "goodsId":52,
-                    "type":"down"
-                }
-                set_shop = requests.get(url=self.url2,params=data,cookies = self.cookie)
-                print set_shop.text
+                # 调用获取店铺商品状态方法
+                goodsstatus = self.goods_status()
+                goodsta = json.loads(goodsstatus.text)
+                if (obj["type"] == "up"):
+                    data = {
+                        "goodsId":52,
+                        "type":"down"
+                    }
+                    set_shop = requests.get(url=self.url2,params=data,cookies = self.cookie)
+                    print set_shop.text
+                else:
+                    data = {
+                        "goodsId": 52,
+                        "type": "up"
+                    }
+                    set_shop = requests.get(url=self.url2, params=data, cookies=self.cookie)
+                    print set_shop.text
             else:
-                data = {
-                    "goodsId": 52,
-                    "type": "up"
-                }
-                set_shop = requests.get(url=self.url2, params=data, cookies=self.cookie)
-                print set_shop.text
+                print "other goods"
 
     def tearDown(self):
         pass
