@@ -6,4 +6,3 @@ class Good(unittest.TestCase):
         pass
     def tearDown(self):
         pass
-    

@@ -11,20 +11,20 @@ class CreateOrder(unittest.TestCase):
         self.login = Login.login()
         self.cookie = self.login.cookies
     def create(self):
-         data = {
-                    "dispatchtype": 0,
-                    "addressid": 1420,
-                    "fromcart": 2,
-                    "goods": "47,0,1",
-                    "carrier": 1,
-                }
-         order = requests.post(self.curl, data=data,cookies = self.cookie)
-         # 将字符串转换为字典
-         res = json.loads(order.text)
-         # 获取ordersn
-         ordersn = res["result"]["ordersn"]
-         print ordersn
-         return ordersn
+        data = {
+            "dispatchtype": 0,
+            "addressid": 1420,
+            "fromcart": 2,
+            "goods": "47,0,1",
+            "carrier": 1,
+        }
+        order = requests.post(self.curl, data=data, cookies=self.cookie)
+        # 将字符串转换为字典
+        res = json.loads(order.text)
+        # 获取ordersn
+        ordersn = res["result"]["ordersn"]
+        print ordersn
+        return ordersn
 
     def test_order_message(self):
         ordersn = self.create()
