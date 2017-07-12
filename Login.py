@@ -24,7 +24,6 @@ def login():
         }
     login = requests.get(url,params=login_data,cookies = cookie)
     # print login.text
-    # cookie = login.cookies
     return login
 
 if __name__ == '__main__':

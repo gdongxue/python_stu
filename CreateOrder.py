@@ -3,10 +3,13 @@ import requests
 import unittest
 import Login
 import json
+import HTMLTestRunner
 
 class CreateOrder(unittest.TestCase):
     def setUp(self):
+        # 创建订单
         self.curl = "http://api.100iec.com/order/createOrder"
+        # 订单详情
         self.ourl = "http://api.100iec.com/order/orderinfo"
         self.login = Login.login()
         self.cookie = self.login.cookies
@@ -33,12 +36,27 @@ class CreateOrder(unittest.TestCase):
         }
         om = requests.get(url=self.ourl,params=data)
         print om.text
+        message = json.loads(om.text)
+        result = message["result"]
+        i = {}
+        for i in  result:
+            if (i["openid"] == "U170616112232354653"):
+                print "下单人正确"
+            else:
+                print "下单人不正确"
     def tearDown(self):
         pass
 if __name__ == '__main__':
     suit = unittest.TestSuite
     suit.addTest(CreateOrder("test_order_message"))
-    runner = unittest.TextTestRunner
+    Htmlfile = "E:\\test\\OrderResult.html"
+    fp = open(Htmlfile,"wb")
+    runner = HTMLTestRunner.HTMLTestRunner(
+        stream=fp,
+        title="测试报告",
+        description="用例执行情况"
+    )
     runner.run(suit)
+    fp.close()
 
 
