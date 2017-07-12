@@ -17,7 +17,7 @@ class Shop(unittest.TestCase):
         self.cookie = self.login.cookies
 
     # 获取店铺信息
-    def test_shopinfo (self):
+    def shopinfo (self):
         open = json.loads(self.login.text)
         # 将字符串转化字典
         o = open["result"]["openid"]
