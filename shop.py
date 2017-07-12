@@ -40,7 +40,9 @@ class Shop(unittest.TestCase):
         # 将字符串转化为字典
         goodsta = json.loads(goodsStatus)
         goodstatusList = goodsta["result"]["goods"]
+        flag = 0
         for obj in goodstatusList:
+
             if (obj["id"] == "52"):
                  data = {
                         "goodsId":52,
@@ -48,13 +50,17 @@ class Shop(unittest.TestCase):
                     }
                  set_shop = requests.get(url=self.url2,params=data,cookies = self.cookie)
                  print set_shop.text
+                 flag = 1
+                 break
             else:
-                    data = {
-                        "goodsId": 52,
-                        "type": "up"
-                    }
-                    set_shop = requests.get(url=self.url2, params=data, cookies=self.cookie)
-                    print set_shop.text
+                pass
+        if(flag == 0):
+            data = {
+                "goodsId": 52,
+                "type": "up"
+            }
+            set_shop = requests.get(url=self.url2, params=data, cookies=self.cookie)
+            print set_shop.text
     def tearDown(self):
         pass
 if __name__ == '__main__':
