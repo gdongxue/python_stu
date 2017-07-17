@@ -31,6 +31,7 @@ class Shop(unittest.TestCase):
         shopid = openid["result"]["openid"]
         self.url_goods = self.url1+"?shopid="+shopid
         goods = requests.get(url=self.url_goods,cookies = self.cookie)
+        print goods.text
         return goods.text
 
     # 获取店铺商品上下架状态
@@ -42,7 +43,6 @@ class Shop(unittest.TestCase):
         goodstatusList = goodsta["result"]["goods"]
         flag = 0
         for obj in goodstatusList:
-
             if (obj["id"] == "52"):
                  data = {
                         "goodsId":52,

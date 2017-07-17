@@ -6,7 +6,7 @@ def login():
     # 发送验证码
     url2 = "http://api.100iec.com/util/sms/logincode/send"
     code_data = {
-        "mobile":"17800000000",
+        "mobile":"13611111111",
         "code":"rh7n"
     }
     code = requests.get(url2,params=code_data)
@@ -19,7 +19,7 @@ def login():
 
     url = "http://api.100iec.com/member/login/mobile"
     login_data = {
-            "mobile": "17800000000",
+            "mobile": "13611111111",
             "code": code
         }
     login = requests.get(url,params=login_data,cookies = cookie)

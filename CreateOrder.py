@@ -4,6 +4,7 @@ import unittest
 import Login
 import json
 import HTMLTestRunner
+import Adress
 
 class CreateOrder(unittest.TestCase):
     def setUp(self):
@@ -16,10 +17,11 @@ class CreateOrder(unittest.TestCase):
     def create(self):
         data = {
             "dispatchtype": 0,
-            "addressid": 1420,
+            "addressid": 1635,
             "fromcart": 2,
             "goods": "47,0,1",
             "carrier": 1,
+            "deduct2":1
         }
         order = requests.post(self.curl, data=data, cookies=self.cookie)
         # 将字符串转换为字典
@@ -38,16 +40,21 @@ class CreateOrder(unittest.TestCase):
         print om.text
         message = json.loads(om.text)
         result = message["result"]
-        i = {}
+        print result
+        flag = 0
         for i in  result:
-            if (i["openid"] == "U170616112232354653"):
+            if (i == "U170711166074675802"):
                 print "下单人正确"
+                break
             else:
                 print "下单人不正确"
+
+        if(flag==0):
+                print "下单人正确"
     def tearDown(self):
         pass
 if __name__ == '__main__':
-    suit = unittest.TestSuite
+    suit = unittest.TestSuite()
     suit.addTest(CreateOrder("test_order_message"))
     Htmlfile = "E:\\test\\OrderResult.html"
     fp = open(Htmlfile,"wb")
