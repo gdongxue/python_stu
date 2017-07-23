@@ -41,29 +41,20 @@ class CreateOrder(unittest.TestCase):
         message = json.loads(om.text)
         result = message["result"]
         print result
-        flag = 0
-        for i in  result:
-            if (i == "U170711166074675802"):
-                print "下单人正确"
-                break
-            else:
-                print "下单人不正确"
-
-        if(flag==0):
-                print "下单人正确"
+        # flag = 0
+        # for i in  result:
+        #     if (i == "U170711166074675802"):
+        #         print "下单人正确"
+        #         break
+        #     else:
+        #         print "下单人不正确"
+        #
+        # if(flag==0):
+        #         print "下单人正确"
     def tearDown(self):
         pass
 if __name__ == '__main__':
-    suit = unittest.TestSuite()
-    suit.addTest(CreateOrder("test_order_message"))
-    Htmlfile = "E:\\test\\OrderResult.html"
-    fp = open(Htmlfile,"wb")
-    runner = HTMLTestRunner.HTMLTestRunner(
-        stream=fp,
-        title="测试报告",
-        description="用例执行情况"
-    )
-    runner.run(suit)
-    fp.close()
+    unittest.main()
+
 
 

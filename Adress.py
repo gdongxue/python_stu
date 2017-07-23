@@ -48,9 +48,4 @@ class Adress(unittest.TestCase):
         pass
 
 if __name__ == '__main__':
-    suit = unittest.TestSuite()
-    suit.addTest("test_de_adress")
-    suit.addTest("test_all_adress")
-    runner = unittest.TextTestRunner
-    runner(suit)
-    # unittest.main
+    unittest.main

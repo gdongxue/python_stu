@@ -6,6 +6,7 @@ import ConfigParser
 import json
 class Good(unittest.TestCase):
     def setUp(self):
+        # 获取商品详情
         self.detailUrl = "http://api.100iec.com/goods/getGoodsDetail"
         self.login = Login.login()
         self.cookie=self.login.cookies

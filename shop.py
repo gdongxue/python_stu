@@ -64,9 +64,4 @@ class Shop(unittest.TestCase):
     def tearDown(self):
         pass
 if __name__ == '__main__':
-    suit = unittest.TestSuite
-    # suit.addTest(Shop("test_shopinfo"))
-    suit.addTest(Shop("test_setshop_goods"))
-    runner = unittest.TextTestRunner
-    runner.run(suit)
-    # unittest.main
+    unittest.main
