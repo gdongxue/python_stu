@@ -24,7 +24,7 @@ class Good(unittest.TestCase):
         title = tit["title"]
         titl = title.encode("utf-8")
         self.assertEqual(name,titl)
-        print title
+        print titl
 
     def tearDown(self):
         pass
