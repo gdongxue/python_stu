@@ -6,24 +6,28 @@ def login():
     # 发送验证码
     url2 = "http://api.100iec.com/util/sms/logincode/send"
     code_data = {
-        "mobile":"13611111111",
+       "mobile":"18077777777",
         "code":"rh7n"
-    }
+     }
     code = requests.get(url2,params=code_data)
     cookie = code.cookies
 
     # 登录
     code_text = json.loads(code.text)
     code = code_text["result"]["code"]
+    print code
 
-
-    url = "http://api.100iec.com/member/login/mobile"
+    url = "http://api.100iec.com/member/login"
     login_data = {
-            "mobile": "13611111111",
+            "action":"mobileLogin",
+            "mobile": "18077777777",
             "code": code
         }
-    login = requests.get(url,params=login_data,cookies = cookie)
-    # print login.text
+    header = {
+        "Appinfo":"123456"
+    }
+    login = requests.get(url=url,params=login_data,headers=header)
+    print login.text
     return login
 
 if __name__ == '__main__':

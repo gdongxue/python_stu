@@ -7,19 +7,21 @@ import HTMLTestRunner
 import Adress
 
 class CreateOrder(unittest.TestCase):
-    def setUp(self):
+  for i in range(10):
+    if i <10:
+     def setUp(self):
         # 创建订单
         self.curl = "http://api.100iec.com/order/createOrder"
         # 订单详情
         self.ourl = "http://api.100iec.com/order/orderinfo"
         self.login = Login.login()
         self.cookie = self.login.cookies
-    def create(self):
+     def create(self):
         data = {
             "dispatchtype": 0,
-            "addressid": 1635,
+            "addressid": 1751,
             "fromcart": 2,
-            "goods": "47,0,1",
+            "goods": "52,0,1",
             "carrier": 1,
             "deduct2":1
         }
@@ -30,6 +32,8 @@ class CreateOrder(unittest.TestCase):
         ordersn = res["result"]["ordersn"]
         print ordersn
         return ordersn
+    else:
+        break
 
     def test_order_message(self):
         ordersn = self.create()

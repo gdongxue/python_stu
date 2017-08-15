@@ -19,7 +19,7 @@ class Adress(unittest.TestCase):
         data = {
             "id":0,
             "realname":"高冬雪",
-            "mobile":"13611111111",
+            "mobile":"18077777777",
             "province":"220000",
             "city":"220100",
             "area":"220112",
