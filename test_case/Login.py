@@ -15,7 +15,6 @@ def login():
     # 登录
     code_text = json.loads(code.text)
     code = code_text["result"]["code"]
-    print code
 
     url = "http://api.100iec.com/member/login"
     login_data = {
@@ -26,8 +25,7 @@ def login():
     header = {
         "Appinfo":"123456"
     }
-    login = requests.get(url=url,params=login_data,headers=header)
-    print login.text
+    login = requests.get(url=url,params=login_data,headers=header,cookies=cookie)
     return login
 
 if __name__ == '__main__':

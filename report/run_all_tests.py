@@ -1,18 +1,17 @@
 # -*- coding:utf-8 -*-
 import unittest
-import CreateOrder
-import Adress
-import  Shop
-import Goods
+from test_case import CreateOrder
+from test_case import Adress
+from test_case import  Shop
+from test_case import Goods
+from test_case.init_Order import init_order
 import HTMLTestRunner
 import sys
 
 reload(sys)
 sys.setdefaultencoding('utf8')
 class RunAll(unittest.TestCase):
-
     def setup(self):
-
         pass
     def tearDown(self):
         pass
@@ -23,6 +22,7 @@ if __name__ == '__main__':
     suit.addTest(unittest.makeSuite(Adress.Adress))
     suit.addTest(unittest.makeSuite(Shop.Shop))
     suit.addTest(unittest.makeSuite(Goods.Good))
+    suit.addTest(unittest.makeSuite(init_order.Order))
     filename = "E:\\test\\result1.html"
     fp = open(filename,"wb")
     runner = HTMLTestRunner.HTMLTestRunner(

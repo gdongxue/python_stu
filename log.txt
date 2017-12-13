@@ -1,0 +1,7 @@
+F test_answer.py::test_answer
+ def test_answer():
+ >       assert func(3) == 5
+ E       assert 4 == 5
+ E        +  where 4 = func(3)
+ 
+ test_answer.py:6: AssertionError
